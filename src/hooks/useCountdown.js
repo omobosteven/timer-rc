@@ -2,7 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import { getTime } from "date-fns";
 
 export const useCountdown = (targetDate) => {
-  const [countDown, setCountDown] = useState(targetDate);
+  const [countDown, setCountDown] = useState(
+    () => targetDate - getTime(new Date())
+  );
   const [isPaused, setIsPaused] = useState(true);
 
   const intervalRef = useRef(null);
@@ -45,6 +47,17 @@ const getReturnValues = (countDown) => {
   );
   const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
+
+  console.log(
+    days,
+    "days",
+    hours,
+    "hours",
+    minutes,
+    "minutes",
+    seconds,
+    "seconds"
+  );
 
   return {
     days: days < 0 ? "00" : days.toString().padStart(2, "0"),

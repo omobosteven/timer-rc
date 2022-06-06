@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useCountdown } from "./hooks/useCountdown";
-import { TimeField } from "./components/TimeField";
+import { TimerActions } from "./components/TimerActions";
+import { TimerCount } from "./components/TimerCount";
+import { TimerInputs } from "./components/TimerInputs";
 import { add, getTime } from "date-fns";
-import { Button } from "@mui/material";
 import "./App.css";
 
 function App() {
@@ -95,71 +96,28 @@ function App() {
       <h1>Timer</h1>
       <br />
       <div>
-        <TimeField
-          label="Days"
-          value={timerInput.days}
-          name="days"
-          onChange={handleChangeTimeField}
-          inputProps={{
-            max: 365,
-            min: 0,
-          }}
-        />
-        <TimeField
-          label="Hours"
-          value={timerInput.hours}
-          name="hours"
-          onChange={handleChangeTimeField}
-          inputProps={{
-            max: 99,
-            min: 0,
-          }}
-        />
-        <TimeField
-          label="Min"
-          value={timerInput.minutes}
-          name="minutes"
-          onChange={handleChangeTimeField}
-          inputProps={{
-            max: 99,
-            min: 0,
-          }}
-        />
-        <TimeField
-          label="Sec"
-          value={timerInput.seconds}
-          name="seconds"
-          onChange={handleChangeTimeField}
-          inputProps={{
-            max: 99,
-            min: 0,
-          }}
+        <TimerInputs
+          timerInput={timerInput}
+          handleChangeTimeField={handleChangeTimeField}
         />
 
         <br />
         <br />
 
-        <div>
-          <Button variant="contained" onClick={handleRestart}>
-            Restart
-          </Button>
-          <Button variant="contained" onClick={handleStartTimer}>
-            Start
-          </Button>
-          <Button variant="contained" onClick={handlePauseTimer}>
-            Pause
-          </Button>
-          <Button variant="contained" onClick={handleReset}>
-            Reset
-          </Button>
-        </div>
+        <TimerActions
+          handleRestart={handleRestart}
+          handleStartTimer={handleStartTimer}
+          handlePauseTimer={handlePauseTimer}
+          handleReset={handleReset}
+        />
       </div>
       <br />
-      <div>
-        <h1>
-          {days}:{hours}:{minutes}:{seconds}
-        </h1>
-      </div>
+      <TimerCount
+        days={days}
+        hours={hours}
+        minutes={minutes}
+        seconds={seconds}
+      />
     </div>
   );
 }
