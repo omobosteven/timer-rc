@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useCountdown } from "./hooks/useCountdown";
-import { TimerActions } from "./components/TimerActions";
-import { TimerCount } from "./components/TimerCount";
-import { TimerInputs } from "./components/TimerInputs";
 import { add, getTime } from "date-fns";
-import "./App.css";
+import { useCountdown } from "hooks/useCountdown";
+import { TimerActions } from "components/TimerActions";
+import { TimerCount } from "components/TimerCount";
+import { TimerInputs } from "components/TimerInputs";
+import { Container } from "reusables/Contianer";
 
 function App() {
   const [targetTime, setTargetTime] = useState(() => getTime(new Date()));
@@ -92,17 +92,21 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Timer</h1>
-      <br />
+    <Container maxWidth={false}>
+      <h1>tMr</h1>
+
+      <TimerCount
+        days={days}
+        hours={hours}
+        minutes={minutes}
+        seconds={seconds}
+      />
+
       <div>
         <TimerInputs
           timerInput={timerInput}
           handleChangeTimeField={handleChangeTimeField}
         />
-
-        <br />
-        <br />
 
         <TimerActions
           handleRestart={handleRestart}
@@ -111,14 +115,7 @@ function App() {
           handleReset={handleReset}
         />
       </div>
-      <br />
-      <TimerCount
-        days={days}
-        hours={hours}
-        minutes={minutes}
-        seconds={seconds}
-      />
-    </div>
+    </Container>
   );
 }
 
