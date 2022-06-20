@@ -1,9 +1,12 @@
+import { StyledTimerCount } from "./TimerCount.styles";
+import { Typography } from "reusables/Typography";
+
 export const TimerCount = ({ days, hours, minutes, seconds }) => {
   return (
-    <div>
-      <h1>
+    <StyledTimerCount>
+      <Typography component="p">
         {days}:{hours}:{minutes}:{seconds}
-      </h1>
-    </div>
+      </Typography>
+    </StyledTimerCount>
   );
 };

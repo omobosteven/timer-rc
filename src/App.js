@@ -5,6 +5,8 @@ import { TimerActions } from "components/TimerActions";
 import { TimerCount } from "components/TimerCount";
 import { TimerInputs } from "components/TimerInputs";
 import { Container } from "reusables/Contianer";
+import { LogoTitle } from "components/LogoTitle";
+import { TimerControl } from "components/TimerControl";
 
 function App() {
   const [targetTime, setTargetTime] = useState(() => getTime(new Date()));
@@ -93,7 +95,7 @@ function App() {
 
   return (
     <Container maxWidth={false}>
-      <h1>tMr</h1>
+      <LogoTitle component="h1">tMr</LogoTitle>
 
       <TimerCount
         days={days}
@@ -102,19 +104,14 @@ function App() {
         seconds={seconds}
       />
 
-      <div>
-        <TimerInputs
-          timerInput={timerInput}
-          handleChangeTimeField={handleChangeTimeField}
-        />
-
-        <TimerActions
-          handleRestart={handleRestart}
-          handleStartTimer={handleStartTimer}
-          handlePauseTimer={handlePauseTimer}
-          handleReset={handleReset}
-        />
-      </div>
+      <TimerControl
+        timerInput={timerInput}
+        handleChangeTimeField={handleChangeTimeField}
+        handleRestart={handleRestart}
+        handleStartTimer={handleStartTimer}
+        handlePauseTimer={handlePauseTimer}
+        handleReset={handleReset}
+      />
     </Container>
   );
 }
