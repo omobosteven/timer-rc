@@ -4,16 +4,6 @@ export const TimerInputs = ({ timerInput, handleChangeTimeField }) => {
   return (
     <>
       <TimeField
-        label="Days"
-        value={timerInput.days}
-        name="days"
-        onChange={handleChangeTimeField}
-        inputProps={{
-          max: 365,
-          min: 0,
-        }}
-      />
-      <TimeField
         label="Hours"
         value={timerInput.hours}
         name="hours"

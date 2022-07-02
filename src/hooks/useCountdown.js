@@ -41,26 +41,14 @@ export const useCountdown = (targetDate) => {
 };
 
 const getReturnValues = (countDown) => {
-  const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
   const hours = Math.floor(
     (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
   );
   const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
 
-  console.log(
-    days,
-    "days",
-    hours,
-    "hours",
-    minutes,
-    "minutes",
-    seconds,
-    "seconds"
-  );
 
   return {
-    days: days < 0 ? "00" : days.toString().padStart(2, "0"),
     hours: hours < 0 ? "00" : hours.toString().padStart(2, "0"),
     minutes: minutes < 0 ? "00" : minutes.toString().padStart(2, "0"),
     seconds: seconds < 0 ? "00" : seconds.toString().padStart(2, "0"),

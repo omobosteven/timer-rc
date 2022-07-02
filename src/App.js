@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { add, getTime } from "date-fns";
 import { useCountdown } from "hooks/useCountdown";
-import { TimerActions } from "components/TimerActions";
 import { TimerCount } from "components/TimerCount";
-import { TimerInputs } from "components/TimerInputs";
 import { Container } from "reusables/Contianer";
 import { LogoTitle } from "components/LogoTitle";
 import { TimerControl } from "components/TimerControl";
@@ -11,7 +9,6 @@ import { TimerControl } from "components/TimerControl";
 function App() {
   const [targetTime, setTargetTime] = useState(() => getTime(new Date()));
   const [timerInput, setTimerInput] = useState({
-    days: "",
     hours: "",
     minutes: "",
     seconds: "",
@@ -19,13 +16,12 @@ function App() {
   const [pausedTime, setPausedTime] = useState(0);
 
   const timer = useCountdown(targetTime);
-  const { days, hours, minutes, seconds, handlePause, handleStart } = timer;
+  const { hours, minutes, seconds, handlePause, handleStart } = timer;
 
   useEffect(() => {
     setTargetTime(
       getTime(
         add(new Date(), {
-          days: +timerInput.days,
           hours: +timerInput.hours,
           minutes: timerInput.minutes,
           seconds: +timerInput.seconds,
@@ -36,21 +32,13 @@ function App() {
 
   const handleChangeTimeField = (e) => {
     let { name, value } = e.target;
-
-    if (["seconds", "minutes", "hours"].includes(name)) {
-      value = +value > 99 ? "99" : value;
-    }
-
-    if ("days" === name) {
-      value = +value > 365 ? "365" : value;
-    }
+    value = +value > 99 ? "99" : value;
 
     setTimerInput({ ...timerInput, [name]: value });
   };
 
   const handleReset = () => {
     setTimerInput({
-      days: "",
       hours: "",
       minutes: "",
       seconds: "",
@@ -69,7 +57,6 @@ function App() {
         ? getTime(new Date()) - pausedTime
         : getTime(
             add(new Date(), {
-              days: +timerInput.days,
               hours: +timerInput.hours,
               minutes: timerInput.minutes,
               seconds: +timerInput.seconds,
@@ -84,7 +71,6 @@ function App() {
     setTargetTime(
       getTime(
         add(new Date(), {
-          days: +timerInput.days,
           hours: +timerInput.hours,
           minutes: timerInput.minutes,
           seconds: +timerInput.seconds,
@@ -98,7 +84,6 @@ function App() {
       <LogoTitle component="h1">tMr</LogoTitle>
 
       <TimerCount
-        days={days}
         hours={hours}
         minutes={minutes}
         seconds={seconds}
