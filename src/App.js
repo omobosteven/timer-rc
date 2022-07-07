@@ -16,14 +16,21 @@ function App() {
   const [pausedTime, setPausedTime] = useState(0);
 
   const timer = useCountdown(targetTime);
-  const { hours, minutes, seconds, handlePause, handleStart } = timer;
+  const {
+    hours,
+    minutes,
+    seconds,
+    handlePause,
+    handleStart,
+    handleReset: reset,
+  } = timer;
 
   useEffect(() => {
     setTargetTime(
       getTime(
         add(new Date(), {
           hours: +timerInput.hours,
-          minutes: timerInput.minutes,
+          minutes: +timerInput.minutes,
           seconds: +timerInput.seconds,
         })
       )
@@ -44,6 +51,7 @@ function App() {
       seconds: "",
     });
     setTargetTime(getTime(new Date()));
+    reset();
   };
 
   const handlePauseTimer = () => {
@@ -67,32 +75,15 @@ function App() {
     handleStart();
   };
 
-  const handleRestart = () => {
-    setTargetTime(
-      getTime(
-        add(new Date(), {
-          hours: +timerInput.hours,
-          minutes: timerInput.minutes,
-          seconds: +timerInput.seconds,
-        })
-      )
-    );
-  };
-
   return (
     <Container maxWidth={false}>
       <LogoTitle component="h1">tMr</LogoTitle>
 
-      <TimerCount
-        hours={hours}
-        minutes={minutes}
-        seconds={seconds}
-      />
+      <TimerCount hours={hours} minutes={minutes} seconds={seconds} />
 
       <TimerControl
         timerInput={timerInput}
         handleChangeTimeField={handleChangeTimeField}
-        handleRestart={handleRestart}
         handleStartTimer={handleStartTimer}
         handlePauseTimer={handlePauseTimer}
         handleReset={handleReset}

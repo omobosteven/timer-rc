@@ -1,8 +1,9 @@
 import { TimeField } from "./TimeField";
+import { StyledTimerInputs } from "components/TimerInputs.styles";
 
 export const TimerInputs = ({ timerInput, handleChangeTimeField }) => {
   return (
-    <>
+    <StyledTimerInputs>
       <TimeField
         label="Hours"
         value={timerInput.hours}
@@ -12,9 +13,10 @@ export const TimerInputs = ({ timerInput, handleChangeTimeField }) => {
           max: 99,
           min: 0,
         }}
+        variant="outlined"
       />
       <TimeField
-        label="Min"
+        label="Minutes"
         value={timerInput.minutes}
         name="minutes"
         onChange={handleChangeTimeField}
@@ -24,7 +26,7 @@ export const TimerInputs = ({ timerInput, handleChangeTimeField }) => {
         }}
       />
       <TimeField
-        label="Sec"
+        label="Seconds"
         value={timerInput.seconds}
         name="seconds"
         onChange={handleChangeTimeField}
@@ -33,6 +35,6 @@ export const TimerInputs = ({ timerInput, handleChangeTimeField }) => {
           min: 0,
         }}
       />
-    </>
+    </StyledTimerInputs>
   );
 };

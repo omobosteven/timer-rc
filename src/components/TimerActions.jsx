@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { StyledTimerActions } from "components/TimerActions.styles";
 
 export const TimerActions = ({
   handleRestart,
@@ -7,10 +8,7 @@ export const TimerActions = ({
   handleReset,
 }) => {
   return (
-    <div>
-      <Button variant="contained" onClick={handleRestart}>
-        Restart
-      </Button>
+    <StyledTimerActions>
       <Button variant="contained" onClick={handleStartTimer}>
         Start
       </Button>
@@ -20,6 +18,6 @@ export const TimerActions = ({
       <Button variant="contained" onClick={handleReset}>
         Reset
       </Button>
-    </div>
+    </StyledTimerActions>
   );
 };

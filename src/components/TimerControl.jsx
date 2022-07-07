@@ -5,7 +5,6 @@ import { StyledTimerControl } from "./TimerControl.styles";
 export const TimerControl = ({
   timerInput,
   handleChangeTimeField,
-  handleRestart,
   handleStartTimer,
   handlePauseTimer,
   handleReset,
@@ -18,7 +17,6 @@ export const TimerControl = ({
       />
 
       <TimerActions
-        handleRestart={handleRestart}
         handleStartTimer={handleStartTimer}
         handlePauseTimer={handlePauseTimer}
         handleReset={handleReset}

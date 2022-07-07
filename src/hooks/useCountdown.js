@@ -33,10 +33,16 @@ export const useCountdown = (targetDate) => {
     setIsPaused(true);
   };
 
+  const handleReset = () => {
+    clearTimer();
+    setCountDown(targetDate - getTime(new Date()));
+  };
+
   return {
     ...getReturnValues(countDown),
     handlePause,
     handleStart: () => setIsPaused(false),
+    handleReset: () => handleReset(),
   };
 };
 
@@ -46,7 +52,6 @@ const getReturnValues = (countDown) => {
   );
   const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
-
 
   return {
     hours: hours < 0 ? "00" : hours.toString().padStart(2, "0"),
