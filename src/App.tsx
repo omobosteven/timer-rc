@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { add, getTime } from "date-fns";
 import { useCountdown } from "hooks/useCountdown";
 import { TimerCount } from "components/TimerCount";
@@ -37,7 +37,9 @@ function App() {
     );
   }, [timerInput]);
 
-  const handleChangeTimeField = (e) => {
+  const handleChangeTimeField: React.ChangeEventHandler<HTMLInputElement> = (
+    e
+  ): void => {
     let { name, value } = e.target;
     value = +value > 99 ? "99" : value;
 
@@ -66,7 +68,7 @@ function App() {
         : getTime(
             add(new Date(), {
               hours: +timerInput.hours,
-              minutes: timerInput.minutes,
+              minutes: +timerInput.minutes,
               seconds: +timerInput.seconds,
             })
           )

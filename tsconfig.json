@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Language and Environment */
+    "target": "es2016",
+     "lib": [
+       "es6",
+       "dom",
+       "dom.iterable",
+       "esnext"
+     ],
+     "jsx": "react-jsx",
+
+    /* Modules */
+    "module": "esnext",
+     "rootDir": "src",
+     "moduleResolution": "node",
+     "baseUrl": "src",
+     "resolveJsonModule": true,
+
+    /* JavaScript Support */
+     "allowJs": true,
+
+    /* Emit */
+     "outDir": "build",
+     "noEmit": true,
+
+    /* Interop Constraints */
+     "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+     "noImplicitAny": true,
+     "strictNullChecks": true,
+     "noImplicitThis": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
