@@ -1,4 +1,4 @@
-export const GlobalStyles = (theme) => {
+export const GlobalStyles = () => {
   return {
     MuiCssBaseline: {
       styleOverrides: {},

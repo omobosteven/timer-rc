@@ -1,16 +1,16 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getTime } from "date-fns";
 
-export const useCountdown = (targetDate) => {
+export const useCountdown = (targetDate: number) => {
   const [countDown, setCountDown] = useState(
     () => targetDate - getTime(new Date())
   );
   const [isPaused, setIsPaused] = useState(true);
 
-  const intervalRef = useRef(null);
+  const intervalRef = useRef<number | null>(null);
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       const diffTime = targetDate - getTime(new Date());
 
       if (!isPaused) {
@@ -25,7 +25,7 @@ export const useCountdown = (targetDate) => {
   }, [targetDate, isPaused]);
 
   const clearTimer = () => {
-    clearInterval(intervalRef.current);
+    window.clearInterval(intervalRef.current as number);
     intervalRef.current = null;
   };
 
@@ -46,7 +46,7 @@ export const useCountdown = (targetDate) => {
   };
 };
 
-const getReturnValues = (countDown) => {
+const getReturnValues = (countDown: number) => {
   const hours = Math.floor(
     (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
   );

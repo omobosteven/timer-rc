@@ -1,8 +1,6 @@
-import { Button } from "@mui/material";
-import { StyledTimerActions } from "components/TimerActions.styles";
+import { Button, styled } from "@mui/material";
 
 export const TimerActions = ({
-  handleRestart,
   handleStartTimer,
   handlePauseTimer,
   handleReset,
@@ -21,3 +19,11 @@ export const TimerActions = ({
     </StyledTimerActions>
   );
 };
+
+const StyledTimerActions = styled("div")({
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "center",
+  columnGap: "20px",
+  rowGap: "20px",
+});
